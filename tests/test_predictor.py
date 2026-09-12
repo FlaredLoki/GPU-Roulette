@@ -15,7 +15,7 @@ def pred():
     return predictor.GPUGatePredictor()
 
 def test_empty_code(pred):
-    results = pred.predict("")
+    results, _ = pred.predict("")
     assert len(results) == 0
 
 def test_blocked_prediction(pred):
@@ -26,7 +26,7 @@ def test_blocked_prediction(pred):
         }
     }
     """
-    results = pred.predict(code)
+    results, _ = pred.predict(code)
     assert len(results) == 1
     assert results[0].verdict == "BLOCKED"
     assert results[0].confidence == 1.0
@@ -40,7 +40,7 @@ def test_dependency_detected(pred):
         }
     }
     """
-    results = pred.predict(code)
+    results, _ = pred.predict(code)
     assert len(results) == 1
     assert results[0].verdict == "UNPROFITABLE"
     assert results[0].dependency is not None
@@ -58,7 +58,7 @@ def test_multiple_loops(pred):
         }
     }
     """
-    results = pred.predict(code)
+    results, _ = pred.predict(code)
     assert len(results) == 2
     assert results[0].loop_line == 2
     assert results[1].loop_line == 5
@@ -71,7 +71,7 @@ def test_json_serializable_output(pred):
         }
     }
     """
-    results = pred.predict(code)
+    results, _ = pred.predict(code)
     assert len(results) == 1
     r = results[0]
     
@@ -102,7 +102,7 @@ def test_json_serializable_output(pred):
         }
     }
     """
-    results = pred.predict(code)
+    results, _ = pred.predict(code)
     
     # 1. Print the actual length of results array (proof it filtered the inner loops out)
     print("\n--- GEMM TEST OUTPUT ---")
@@ -136,7 +136,7 @@ def test_nested_loops_gemm(pred):
         }
     }
     """
-    results = pred.predict(code)
+    results, _ = pred.predict(code)
     
     print("\n--- GEMM TEST OUTPUT ---")
     print(f"Total loops analyzed: {len(results)}")
@@ -166,7 +166,7 @@ def test_mismatched_literal_bounds(pred):
         }
     }
     """
-    results = pred.predict(code)
+    results, _ = pred.predict(code)
     
     print("\n--- RECTANGULAR TEST OUTPUT ---")
     assert len(results) == 1

@@ -131,8 +131,15 @@ class TestGEMM:
         total_trip = 2 ** trip_count_log
         unique_arrays = fv.features['unique_arrays']
         element_size = fv.element_size
+        nest_depth = fv.features['nest_depth']
+        reuse_score = fv.features['data_reuse_score']
+        
+        effective_trip_count = total_trip
+        if nest_depth > 0 and reuse_score > 0:
+            n_approx = total_trip ** (1.0 / (nest_depth + 1))
+            effective_trip_count = total_trip / (n_approx ** min(1.0, reuse_score))
 
-        expected_data_bytes = unique_arrays * total_trip * element_size
+        expected_data_bytes = unique_arrays * effective_trip_count * element_size
         expected_data_bytes_log = math.log2(max(expected_data_bytes, 1))
         assert fv.features['estimated_data_bytes_log'] == pytest.approx(
             expected_data_bytes_log, abs=0.1
