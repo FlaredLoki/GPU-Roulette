@@ -1,4 +1,5 @@
-# GPU Profitability Predictor
+# GPU Roulette
+**GPU Parallelization Profitability Predictor**
 
 A static analysis and ML-based tool that analyzes C/C++ code to predict if a loop is profitable to offload to a GPU. It uses Tree-sitter for robust syntax tree parsing and an XGBoost model for classification and hardware-aware heuristics.
 
