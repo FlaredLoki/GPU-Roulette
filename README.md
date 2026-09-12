@@ -101,7 +101,7 @@ Built during [SegFault 2026](https://segfault.compilertech.org/), a hackathon on
 **Team roles:**
 
 - **Pranav A** — static analysis engine: C parser (`code_parser.py`), 17-feature extractor (`feature_extractor.py`), roofline positioning (`roofline.py`), fix-suggestion engine (`fixits.py`), CLI (`cli.py`); also handled integration, debugging, and production hardening (thread-safety fix, O(N³) memory-footprint correction, dependency resolution, environment-agnostic packaging)
-- **[Teammate's name]** — ML pipeline: physics-informed synthetic training data (`synthetic_data.py`), XGBoost model and rule-based baseline (`model.py`, `baseline.py`), training script (`train.py`), SHAP-based explainer (`explainer.py`), profitability crossover analysis (`crossover.py`), compiler-style diagnostics (`diagnostics.py`), web UI (`web/`)
+- **[Urvi U]** — ML pipeline: physics-informed synthetic training data (`synthetic_data.py`), XGBoost model and rule-based baseline (`model.py`, `baseline.py`), training script (`train.py`), SHAP-based explainer (`explainer.py`), profitability crossover analysis (`crossover.py`), compiler-style diagnostics (`diagnostics.py`), web UI (`web/`)
 - **Both** — joint integration layer (`predictor.py`)
 
 **Stack:** Python · Tree-sitter · XGBoost · SHAP · Flask
