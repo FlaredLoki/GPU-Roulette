@@ -1,0 +1,1 @@
+void gemm_optimized(double *A, double *B, double *C) { for (int i = 0; i < 1024; i++) { for (int k = 0; k < 1024; k++) { double a_ik = A[i * 1024 + k]; for (int j = 0; j < 1024; j++) { C[i * 1024 + j] += a_ik * B[k * 1024 + j]; } } } }

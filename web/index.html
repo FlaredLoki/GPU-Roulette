@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPUGate: Predictor</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Chart.js for rendering SHAP/Roofline/Crossover graphs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1>GPUGate Offload Predictor</h1>
+        <div id="model-status">Loading model info...</div>
+    </header>
+    
+    <main class="container">
+        <!-- Left Pane: Code Input -->
+        <div class="pane left-pane">
+            <h2>C Source Code</h2>
+            <textarea id="code-input" spellcheck="false">
+void gemm(int N, double *A, double *B, double *C) {
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            double sum = 0.0;
+            for (int k = 0; k < N; k++) {
+                sum += A[i*N + k] * B[k*N + j];
+            }
+            C[i*N + j] = sum;
+        }
+    }
+}
+            </textarea>
+            <button id="analyze-btn" onclick="analyzeCode()">Analyze with GPUGate</button>
+            <div id="loading" class="hidden">Analyzing...</div>
+        </div>
+        
+        <!-- Right Pane: Results -->
+        <div class="pane right-pane">
+            <h2>Analysis Results</h2>
+            <div id="results-container">
+                <div class="placeholder">Enter C code and click Analyze.</div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Template for rendering a loop result -->
+    <template id="loop-result-template">
+        <div class="loop-card">
+            <div class="card-header">
+                <h3>Line <span class="loc-line"></span>: <span class="loc-type"></span> loop</h3>
+                <span class="badge verdict-badge"></span>
+            </div>
+            
+            <div class="code-snippet-box">
+                <pre><code class="source-snippet"></code></pre>
+            </div>
+            
+            <div class="terminal-box diagnostic-output"></div>
+            
+            <div class="explanation-box"></div>
+
+            <div class="fix-suggestions-container hidden">
+                <h4>Suggested Fixes</h4>
+                <ul class="fix-list"></ul>
+            </div>
+            
+            <div class="charts-container">
+                <div class="chart-wrapper">
+                    <h4>SHAP Contributions (Grouped)</h4>
+                    <canvas class="shap-chart"></canvas>
+                </div>
+                <div class="chart-wrapper">
+                    <h4>Profitability Crossover</h4>
+                    <canvas class="crossover-chart"></canvas>
+                </div>
+            </div>
+            
+            <div class="roofline-summary">
+                <h4>Roofline Position</h4>
+                <p><strong>Boundedness:</strong> <span class="rfl-bound"></span></p>
+                <p><strong>Arithmetic Intensity:</strong> <span class="rfl-ai"></span> FLOPs/byte</p>
+                <p><strong>Estimated Performance:</strong> <span class="rfl-gflops"></span> GFLOPs</p>
+            </div>
+        </div>
+    </template>
+
+    <script src="app.js"></script>
+</body>
+</html>

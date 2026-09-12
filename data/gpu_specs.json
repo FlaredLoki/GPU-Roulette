@@ -1,0 +1,38 @@
+{
+  "T4": {
+    "name": "NVIDIA Tesla T4",
+    "peak_gflops_fp32": 8100,
+    "peak_gflops_fp64": 254,
+    "mem_bandwidth_gbps": 320,
+    "pcie_bandwidth_gbps": 12,
+    "cuda_cores": 2560,
+    "sm_count": 40,
+    "warp_size": 32,
+    "launch_overhead_us": 10,
+    "ridge_point_fp32": 25.3
+  },
+  "A100": {
+    "name": "NVIDIA A100",
+    "peak_gflops_fp32": 19500,
+    "peak_gflops_fp64": 9700,
+    "mem_bandwidth_gbps": 2039,
+    "pcie_bandwidth_gbps": 32,
+    "cuda_cores": 6912,
+    "sm_count": 108,
+    "warp_size": 32,
+    "launch_overhead_us": 5,
+    "ridge_point_fp32": 9.6
+  },
+  "RTX3060": {
+    "name": "NVIDIA RTX 3060",
+    "peak_gflops_fp32": 12740,
+    "peak_gflops_fp64": 199,
+    "mem_bandwidth_gbps": 360,
+    "pcie_bandwidth_gbps": 16,
+    "cuda_cores": 3584,
+    "sm_count": 28,
+    "warp_size": 32,
+    "launch_overhead_us": 8,
+    "ridge_point_fp32": 35.4
+  }
+}
