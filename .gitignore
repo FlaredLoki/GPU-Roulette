@@ -1,0 +1,28 @@
+# Environments
+venv/
+env/
+.env
+.venv
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Scratch files and temporary test scripts
+scratch_*.py
+run_batch*.py
+isolated_trip_count.py
+run_anchors.py
+print_distribution.py
+check_anchors.py
+*.c
+!tests/*.c
