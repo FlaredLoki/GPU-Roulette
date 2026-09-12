@@ -113,7 +113,7 @@ def test_json_serializable_output(pred):
     
     # 2. Print the line number (proof it caught the outer 'for (int i...' loop at line 3)
     print(f"Analyzed Loop Line: {results[0].loop_line}")
-    assert results[0].loop_line == 2
+    assert results[0].loop_line == 3
     
     # 3. Print the nested depth (proof it knows there are 2 loops inside it)
     print(f"Calculated Nest Depth: {results[0].features['nest_depth']}")
@@ -143,7 +143,7 @@ def test_nested_loops_gemm(pred):
     assert len(results) == 1
     
     print(f"Analyzed Loop Line: {results[0].loop_line}")
-    assert results[0].loop_line == 2
+    assert results[0].loop_line == 3
     
     print(f"Calculated Nest Depth: {results[0].features['nest_depth']}")
     assert results[0].features['nest_depth'] == 2.0

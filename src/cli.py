@@ -27,7 +27,7 @@ def _cmd_analyze(args):
             
     try:
         pred = predictor.GPUGatePredictor()
-        results, _ = pred.predict(code_str, preprocess=not args.no_preprocess)
+        results, _ = pred.predict(code_str, preprocess=args.preprocess)
     except Exception as e:
         print(f"Error predicting: {e}", file=sys.stderr)
         sys.exit(1)
@@ -112,8 +112,8 @@ def main():
     p_analyze.add_argument('--code', help='Inline C code string')
     p_analyze.add_argument('--format', choices=['diagnostic', 'json', 'table'],
                            default='diagnostic')
-    p_analyze.add_argument('--no-preprocess', action='store_true',
-                           help='Skip gcc -E preprocessing')
+    p_analyze.add_argument('--preprocess', action='store_true',
+                           help='Run gcc -E preprocessing for macro expansion (requires gcc)')
 
     # batch
     p_batch = subparsers.add_parser('batch')

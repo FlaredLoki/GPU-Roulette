@@ -42,7 +42,7 @@ class GPUGatePredictor:
         except Exception:
             self.model = None
 
-    def predict(self, code: str, preprocess: bool = True) -> tuple[List[PredictionResult], List[str]]:
+    def predict(self, code: str, preprocess: bool = False) -> tuple[List[PredictionResult], List[str]]:
         parse_result = code_parser.parse(code, preprocess=preprocess)
         results = []
         

@@ -96,7 +96,7 @@ def preprocess_source(code: str, gcc_path: str = "gcc") -> tuple[str, bool]:
 # Core parsing
 # ---------------------------------------------------------------------------
 
-def parse(code: str, preprocess: bool = True) -> ParseResult:
+def parse(code: str, preprocess: bool = False) -> ParseResult:
     """
     Parse C source code and extract candidate loops.
 

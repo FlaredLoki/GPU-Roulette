@@ -19,3 +19,6 @@ Dependency detection relies on purely syntactic AST pattern matching. While the 
 
 ### Malformed/syntactically broken C can still produce a full analysis
 Because Tree-sitter is highly error-tolerant, it will often build a partial AST for syntactically broken code (e.g., missing semicolons or unclosed braces). This allows malformed loops to run completely through the extraction and prediction pipeline, occasionally resulting in confident-looking profitability verdicts for invalid code. This is partially mitigated by a warning banner surfaced in the UI indicating that the source contains syntax errors and the analysis may be incomplete.
+
+### Macro expansion falls back to symbolic heuristics
+Macro-defined loop bounds (`#define N ...`) fall back to the generic 1000-iteration heuristic by default; precise expansion available via optional gcc-dependent flag, off by default for environment consistency.
