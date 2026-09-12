@@ -1,4 +1,4 @@
-# GPU Roulette
+# 🎰 GPU Roulette
 
 **Should this loop run on the GPU — or is that a bet you'll lose?**
 
